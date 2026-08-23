@@ -1,0 +1,21 @@
+.git
+.github
+.next
+.vinext
+.wrangler
+dist
+node_modules
+output
+tmp
+*.log
+.DS_Store
+.env
+.env.*
+!.env.example
+DSC02793 copy.jpg
+DSC02798 copy.jpg
+MS042134.jpg
+MS042144.jpg
+MS042158.jpg
+*.tar
+*.tar.gz

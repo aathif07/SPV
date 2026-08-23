@@ -16,6 +16,18 @@ npm run dev
 npm run build
 ```
 
+## Docker
+
+Build and run the production container:
+
+```bash
+docker build -t spv-website .
+docker run --rm -p 3000:3000 spv-website
+```
+
+Open `http://localhost:3000`. To use another container port, pass `-e PORT=8080`
+and publish that port with `-p 8080:8080`.
+
 This starter does not use `wrangler.jsonc`.
 
 ## Included Shape
