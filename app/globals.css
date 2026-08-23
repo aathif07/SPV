@@ -457,7 +457,7 @@ body,main{background:#fff}
 .hero-copy h1 span{background:none;color:#090909;-webkit-text-stroke:0}
 .hero-copy h1 em{background:none;color:#d92d2d;-webkit-text-stroke:0}
 .hero-name{display:inline-block;padding:14px 20px 12px;border:2px solid #090909;border-radius:18px;background:#090909;line-height:1}
-.hero-name span{display:block;font-family:Impact,"Arial Black",Arial,sans-serif;font-size:clamp(38px,3.4vw,58px);font-weight:900;line-height:.9;letter-spacing:.02em;text-transform:uppercase;background:linear-gradient(180deg,#e43737 0 48%,#090909 48% 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-stroke:2.4px #fff;paint-order:stroke fill}
+.hero-name span{display:block;font-family:Impact,"Arial Black",Arial,sans-serif;font-size:clamp(38px,3.4vw,58px);font-weight:900;line-height:.9;letter-spacing:.02em;text-transform:uppercase;background:linear-gradient(180deg,#090909 0 38%,#fff 38% 61%,#d92d2d 61% 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-stroke:2.4px #090909;paint-order:stroke fill}
 .hero-intro>div>p{margin-top:18px}
 .hero-visual{min-height:690px}
 .hero-photo{padding-top:14px}
@@ -503,12 +503,12 @@ body,main{background:#fff}
 @media(max-width:620px){.hero-emblem{top:8%;right:-28%;width:136%;opacity:.11}}
 
 /* Reusable red-over-black name treatment from the supplied wordmark. */
-.name-mark{display:inline-block;font-family:Impact,"Arial Black",Arial,sans-serif;font-weight:900;line-height:.9;letter-spacing:.025em;text-transform:uppercase;white-space:nowrap;background:linear-gradient(180deg,#df3737 0 48%,#090909 48% 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-stroke:.45px #090909;paint-order:stroke fill}
-.name-mark.inline{font-size:.92em;vertical-align:.02em}
+.name-mark{display:inline-block;font-family:Impact,"Arial Black",Arial,sans-serif;font-weight:900;line-height:.96;letter-spacing:.025em;text-transform:uppercase;white-space:nowrap;background:linear-gradient(180deg,#090909 0 38%,#fff 38% 61%,#d92d2d 61% 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-stroke:.55px #090909;paint-order:stroke fill}
+.name-mark.inline{font-size:1.12em;line-height:.84;vertical-align:-.04em;-webkit-text-stroke:.65px #090909}
 .name-mark.heading{font-size:.68em;vertical-align:.08em}
 .brand .name-mark{font-size:22px}
 .hero-name{padding:0;border:0;border-radius:0;background:transparent}
-.hero-name .name-mark{font-size:clamp(40px,3.8vw,62px);-webkit-text-stroke:.7px #090909}
+.hero-name .name-mark{font-size:clamp(40px,3.8vw,62px);background:linear-gradient(180deg,#090909 0 38%,#fff 38% 61%,#d92d2d 61% 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-stroke:.8px #090909}
 .signature .name-mark{font-size:clamp(38px,4vw,58px)}
 
 /* Stronger staggered editorial treatment for the About and Journey copy. */
