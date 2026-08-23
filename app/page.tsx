@@ -36,7 +36,7 @@ export default function Home() {
     </header>
 
     <section className="hero" id="top"><div className="hero-copy">
-      <p className="eyebrow"><span>Leadership</span><span>Experience</span><span>Service</span></p><h1>A Leader Committed to the Progress of <em>Tamil Nadu</em></h1>
+      <h1>A Leader Committed to the Progress of <em>Tamil Nadu</em></h1>
       <div className="hero-intro"><div><strong>S. P. Velumani</strong><p>Senior Leader, All India Anna Dravida Munnetra Kazhagam (AIADMK)<br />Member of the Tamil Nadu Legislative Assembly</p></div><p>A leader with extensive political and administrative experience, S. P. Velumani has dedicated his public life to serving the people and contributing to the development of Tamil Nadu.</p></div>
       <p className="hero-summary">His journey reflects a commitment to public service, strong grassroots engagement, organisational leadership and the vision of a stronger Tamil Nadu.</p><div className="hero-actions"><a className="button button-primary" href="#about">Know His Journey <span>↗</span></a><a className="button button-secondary" href="#vision">Explore His Vision <span>→</span></a></div>
     </div><aside className="hero-visual"><span className="hero-word" aria-hidden="true">SPV</span><span className="hero-rail" aria-hidden="true">S. P. VELUMANI · TAMIL NADU</span><Image src="/images/sp-velumani-standing-cutout.png" alt="S. P. Velumani" fill priority sizes="(max-width: 960px) 100vw, 38vw" className="hero-photo" /></aside></section>
