@@ -117,7 +117,11 @@ html{scroll-padding-top:108px}
   border-radius:24px;
   background:rgba(255,253,249,.92);
   box-shadow:0 14px 40px rgba(32,33,37,.08);
+  transition:transform .45s cubic-bezier(.22,1,.36,1),opacity .3s ease,box-shadow .3s ease;
 }
+.site-header.is-hidden{transform:translateY(calc(-100% - 32px));opacity:0;pointer-events:none}
+.brand{padding-left:8px}
+.brand-name{font-size:18px;letter-spacing:-.025em}
 .brand-mark{width:44px;height:44px;border-radius:14px;box-shadow:0 8px 18px rgba(148,58,37,.18)}
 .nav-links a:not(.nav-cta){position:relative;padding:12px 3px;color:#3d4148}
 .nav-links a:not(.nav-cta):after{content:"";position:absolute;left:3px;right:3px;bottom:6px;height:1px;background:var(--blue);transform:scaleX(0);transform-origin:right;transition:transform .25s ease}
@@ -136,6 +140,8 @@ html{scroll-padding-top:108px}
   transition:filter .35s ease!important;
 }
 .gallery-grid .gallery-cutout:hover .gallery-cutout-photo{transform:none!important;filter:drop-shadow(0 18px 22px rgba(32,33,37,.18))}
+.effects-ready .text-reveal{opacity:0;transform:translateY(28px);filter:blur(4px);transition:opacity .7s ease var(--reveal-delay,0ms),transform .8s cubic-bezier(.22,1,.36,1) var(--reveal-delay,0ms),filter .7s ease var(--reveal-delay,0ms)}
+.effects-ready .text-reveal.is-visible{opacity:1;transform:translateY(0);filter:blur(0)}
 @media(max-width:900px){
   .site-header{top:10px;width:calc(100% - 20px);min-height:64px;margin-top:10px;padding:0 10px 0 12px;border-radius:20px}
   .mobile-menu summary{border-radius:14px}
@@ -145,7 +151,11 @@ html{scroll-padding-top:108px}
 @media(max-width:620px){
   html{scroll-padding-top:90px}
   .site-header{min-height:60px;border-radius:18px}
-  .brand-mark{width:40px;height:40px;border-radius:12px}
+  .brand-name{display:inline;font-size:16px}
   .mobile-menu summary{width:40px;height:40px;padding:12px 10px}
   .gallery-grid .gallery-cutout .gallery-cutout-photo{padding:10px 2% 0!important}
+}
+@media(prefers-reduced-motion:reduce){
+  .site-header,.effects-ready .text-reveal{transition:none!important}
+  .effects-ready .text-reveal{opacity:1;transform:none;filter:none}
 }

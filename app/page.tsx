@@ -1,5 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import Image from "next/image";
+import ScrollEffects from "./scroll-effects";
 
 const leadership = [
   ["Political Leadership", "His association with the AIADMK has involved working with party cadres, communities and people across different parts of Tamil Nadu."],
@@ -27,8 +28,9 @@ function SectionHead({ label, title }: { label: string; title: string }) { retur
 
 export default function Home() {
   return <main>
+    <ScrollEffects />
     <header className="site-header">
-      <a className="brand" href="#top" aria-label="S. P. Velumani home"><span className="brand-mark">SPV</span><span className="brand-name">S. P. Velumani</span></a>
+      <a className="brand" href="#top" aria-label="S. P. Velumani home"><span className="brand-name">S. P. Velumani</span></a>
       <nav className="nav-links" aria-label="Primary navigation"><a href="#about">About</a><a href="#leadership">Leadership</a><a href="#vision">Vision</a><a href="#people">People First</a><a className="nav-cta" href="#connect">Connect</a></nav>
       <details className="mobile-menu"><summary aria-label="Open navigation"><span /><span /></summary><div><a href="#about">About</a><a href="#leadership">Leadership</a><a href="#vision">Vision</a><a href="#people">People First</a><a href="#connect">Connect</a></div></details>
     </header>
