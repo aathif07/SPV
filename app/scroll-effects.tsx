@@ -20,6 +20,7 @@ export default function ScrollEffects() {
     const root = document.documentElement;
     const header = document.querySelector<HTMLElement>(".site-header");
     const hero = document.querySelector<HTMLElement>("#top");
+    const visionRail = document.querySelector<HTMLElement>(".vision-grid");
     const revealItems = Array.from(document.querySelectorAll<HTMLElement>(revealSelector));
 
     revealItems.forEach((item, index) => {
@@ -47,9 +48,64 @@ export default function ScrollEffects() {
     );
     if (hero) heroObserver.observe(hero);
 
+    let visionFrame = 0;
+    let lastFrame = 0;
+    let direction = 1;
+    let isRailVisible = false;
+    let isHovered = false;
+    let isFocused = false;
+    let resumeAt = 0;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const pauseTemporarily = (milliseconds: number) => { resumeAt = performance.now() + milliseconds; };
+    const onPointerEnter = () => { isHovered = true; };
+    const onPointerLeave = () => { isHovered = false; };
+    const onFocusIn = () => { isFocused = true; };
+    const onFocusOut = () => { isFocused = false; };
+    const onWheel = () => pauseTemporarily(2800);
+    const onTouchStart = () => pauseTemporarily(4500);
+    const visionObserver = new IntersectionObserver(
+      ([entry]) => { isRailVisible = entry.isIntersecting; },
+      { threshold: 0.18 },
+    );
+
+    const moveVisionRail = (timestamp: number) => {
+      if (!lastFrame) lastFrame = timestamp;
+      const elapsed = Math.min(timestamp - lastFrame, 32);
+      lastFrame = timestamp;
+
+      if (visionRail && isRailVisible && !isHovered && !isFocused && timestamp >= resumeAt) {
+        const maxScroll = visionRail.scrollWidth - visionRail.clientWidth;
+        if (maxScroll > 0) {
+          visionRail.scrollLeft += direction * elapsed * 0.026;
+          if (visionRail.scrollLeft >= maxScroll - 1) direction = -1;
+          if (visionRail.scrollLeft <= 1) direction = 1;
+        }
+      }
+      visionFrame = window.requestAnimationFrame(moveVisionRail);
+    };
+
+    if (visionRail && !reducedMotion) {
+      visionObserver.observe(visionRail);
+      visionRail.addEventListener("pointerenter", onPointerEnter);
+      visionRail.addEventListener("pointerleave", onPointerLeave);
+      visionRail.addEventListener("focusin", onFocusIn);
+      visionRail.addEventListener("focusout", onFocusOut);
+      visionRail.addEventListener("wheel", onWheel, { passive: true });
+      visionRail.addEventListener("touchstart", onTouchStart, { passive: true });
+      visionFrame = window.requestAnimationFrame(moveVisionRail);
+    }
+
     return () => {
       revealObserver.disconnect();
       heroObserver.disconnect();
+      visionObserver.disconnect();
+      window.cancelAnimationFrame(visionFrame);
+      visionRail?.removeEventListener("pointerenter", onPointerEnter);
+      visionRail?.removeEventListener("pointerleave", onPointerLeave);
+      visionRail?.removeEventListener("focusin", onFocusIn);
+      visionRail?.removeEventListener("focusout", onFocusOut);
+      visionRail?.removeEventListener("wheel", onWheel);
+      visionRail?.removeEventListener("touchstart", onTouchStart);
       root.classList.remove("effects-ready");
     };
   }, []);
