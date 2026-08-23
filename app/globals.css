@@ -419,6 +419,36 @@ h2{font-family:Impact,"Arial Black",Arial,sans-serif;font-weight:900;text-transf
   .footer{width:calc(100% - 16px);margin-top:16px;border-radius:24px 24px 0 0}
 }
 
+/* News categories — AIADMK leaf-led editorial bento. */
+.news-section{position:relative}
+.news-intro{display:flex;align-items:flex-end;justify-content:space-between;gap:40px;margin:44px 0 28px}
+.news-intro .news-lead{margin:0}
+.news-intro .sub-label{margin:0 0 4px;color:#751d29;white-space:nowrap}
+.news-grid{display:grid;grid-template-columns:1.08fr 1fr 1fr;grid-template-rows:repeat(2,minmax(245px,1fr));gap:14px}
+.news-grid article,.news-grid article:hover{isolation:isolate;position:relative;display:flex;min-height:245px;flex-direction:column;justify-content:space-between;padding:26px 28px;border:1.5px solid #090909;border-radius:28px;overflow:hidden;color:#090909;background:#fff;box-shadow:none;transform:none;transition:border-color .25s ease,box-shadow .25s ease,transform .25s ease}
+.news-grid article.news-featured{grid-row:1 / span 2;min-height:504px;color:#fff;background:#d92d2d;border-color:#d92d2d}
+.news-grid article:hover{color:#090909;background:#fff;border-color:#d92d2d;box-shadow:0 16px 38px rgba(9,9,9,.08);transform:translateY(-3px)}
+.news-grid article.news-featured:hover{color:#fff;background:#d92d2d;border-color:#090909}
+.news-card-top{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between}
+.news-grid .news-card-top>span:first-child{color:#751d29;font-size:11px;font-weight:900;letter-spacing:.18em}
+.news-grid .news-featured .news-card-top>span:first-child{color:#fff}
+.news-leaf-mark{display:grid;place-items:center;width:58px;height:58px;padding:7px;border:1px solid rgba(9,9,9,.22);border-radius:50%;background:#fff;transition:transform .35s ease}
+.news-leaf-mark img{display:block;width:100%;height:100%;object-fit:contain}
+.news-grid article:hover .news-leaf-mark{transform:rotate(-7deg) scale(1.06)}
+.news-card-copy{position:relative;z-index:2;max-width:92%}
+.news-grid .news-card-copy h3{margin:0 0 10px;font-family:Impact,"Arial Black",Arial,sans-serif;font-size:clamp(24px,2vw,34px);line-height:.98;letter-spacing:.01em;text-transform:uppercase}
+.news-grid .news-card-copy p,.news-grid article:hover .news-card-copy p{margin:0;color:#3f3f3f;font-size:14px;line-height:1.55}
+.news-grid .news-featured .news-card-copy p,.news-grid .news-featured:hover .news-card-copy p{color:#fff}
+.news-grid article>b{position:absolute;z-index:3;right:28px;bottom:24px;display:grid;place-items:center;width:38px;height:38px;border:1px solid currentColor;border-radius:50%;color:inherit;font-size:17px;transition:color .25s ease,background .25s ease,transform .25s ease}
+.news-grid article:hover>b{color:#fff;background:#090909;transform:rotate(45deg)}
+.news-grid .news-featured:hover>b{color:#090909;background:#fff}
+.news-leaf-watermark{position:absolute;z-index:0;right:-72px;bottom:-92px;width:260px;height:260px;object-fit:contain;opacity:.045;filter:grayscale(1);pointer-events:none;transition:opacity .25s ease,transform .45s ease}
+.news-grid .news-featured .news-leaf-watermark{right:-115px;bottom:-110px;width:430px;height:430px;opacity:.14;filter:grayscale(1) brightness(0) invert(1)}
+.news-grid article:hover .news-leaf-watermark{opacity:.1;transform:rotate(-5deg) scale(1.04)}
+.news-grid .news-featured:hover .news-leaf-watermark{opacity:.18}
+@media(max-width:1000px){.news-grid{grid-template-columns:1fr 1fr}.news-grid article.news-featured{grid-column:1 / -1;grid-row:auto;min-height:330px}.news-grid .news-featured .news-leaf-watermark{width:340px;height:340px}}
+@media(max-width:620px){.news-intro{display:block;margin-top:34px}.news-intro .sub-label{margin-top:20px}.news-grid{grid-template-columns:1fr;grid-template-rows:auto}.news-grid article,.news-grid article.news-featured{grid-column:auto;grid-row:auto;min-height:265px;padding:22px;border-radius:22px}.news-leaf-mark{width:50px;height:50px}.news-grid article>b{right:22px;bottom:21px}.news-grid .news-card-copy h3{font-size:28px}.news-grid .news-featured .news-leaf-watermark{width:290px;height:290px}}
+
 /* Pure-white refinement with a dedicated AIADMK-style Velumani wordmark. */
 body,main{background:#fff}
 .hero{width:min(calc(100% - 36px),1620px);max-width:1620px;min-height:auto;grid-template-columns:minmax(0,1.05fr) minmax(420px,.95fr);background:#fff}
@@ -457,4 +487,66 @@ body,main{background:#fff}
   .hero-name span{font-size:clamp(32px,10vw,42px);-webkit-text-stroke:1.8px #fff}
   .hero-visual{min-height:470px}
   .section,.gallery-section,.connect-section,.constituency{width:calc(100% - 16px)}
+}
+
+/* Vision cards remain fully legible while the faster marquee is explored. */
+.vision-grid.is-looping{-webkit-mask-image:none;mask-image:none}
+.vision-grid article:hover,.vision-grid article:hover h3,.vision-grid article:hover p,.vision-grid article:hover .card-no{color:#fff!important;opacity:1!important;filter:none!important}
+.vision-grid article:hover .text-reveal{opacity:1!important;transform:none!important;filter:none!important}
+
+/* Transparent high-resolution party emblem, used as quiet hero art. */
+.hero-visual:before{display:none}
+.hero-emblem{position:absolute;z-index:0;top:5%;right:-16%;width:112%;height:auto;opacity:.13;pointer-events:none;user-select:none;filter:saturate(.9) contrast(1.05)}
+.hero-photo{z-index:2!important}
+.hero-word{z-index:1}
+@media(max-width:900px){.hero-emblem{top:3%;right:-12%;width:104%;opacity:.12}}
+@media(max-width:620px){.hero-emblem{top:8%;right:-28%;width:136%;opacity:.11}}
+
+/* Reusable red-over-black name treatment from the supplied wordmark. */
+.name-mark{display:inline-block;font-family:Impact,"Arial Black",Arial,sans-serif;font-weight:900;line-height:.9;letter-spacing:.025em;text-transform:uppercase;white-space:nowrap;background:linear-gradient(180deg,#df3737 0 48%,#090909 48% 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-stroke:.45px #090909;paint-order:stroke fill}
+.name-mark.inline{font-size:.92em;vertical-align:.02em}
+.name-mark.heading{font-size:.68em;vertical-align:.08em}
+.brand .name-mark{font-size:22px}
+.hero-name{padding:0;border:0;border-radius:0;background:transparent}
+.hero-name .name-mark{font-size:clamp(40px,3.8vw,62px);-webkit-text-stroke:.7px #090909}
+.signature .name-mark{font-size:clamp(38px,4vw,58px)}
+
+/* Stronger staggered editorial treatment for the About and Journey copy. */
+.about .large-prose{display:grid;gap:14px}
+.about .large-prose p{margin:0;padding:22px 24px;border:1px solid #090909;border-left:7px solid #d92d2d;border-radius:18px;background:#fff;box-shadow:0 10px 26px rgba(9,9,9,.05)}
+.timeline article{border:1px solid transparent;border-bottom-color:var(--line);transition:border-color .3s ease,background-color .3s ease,padding .3s ease}
+.timeline article:hover{padding-left:18px;padding-right:18px;border-color:#090909;border-radius:16px;background:#fff}
+
+/* Vision is fully automatic: hover never changes, hides or pauses a card. */
+.vision-grid article,.vision-grid article:hover{transform:none!important;box-shadow:none!important}
+.vision-grid article:hover{color:#090909!important;background:#fff!important}
+.vision-grid article:hover h3,.vision-grid article:hover p{color:#090909!important;opacity:1!important;filter:none!important}
+.vision-grid article:hover .card-no{color:#7c1e2b!important;opacity:1!important;filter:none!important}
+.vision-grid article.featured,.vision-grid article.featured:hover{color:#fff!important;background:#d92d2d!important}
+.vision-grid article.featured:hover h3,.vision-grid article.featured:hover p{color:#fff!important}
+.vision-grid article.featured:hover .card-no{color:#ffd6d6!important}
+
+/* Emblem placements remain decorative and sit behind the portrait/content. */
+.constituency-emblem{position:absolute;z-index:1;top:9%;right:-18%;width:105%;height:auto;opacity:.14;pointer-events:none;filter:saturate(.9)}
+.constituency-image .constituency-photo{z-index:2!important}
+
+/* Final card uses white, red and black as one internal composition. */
+.footer-main{position:relative;isolation:isolate;background:linear-gradient(115deg,#fff 0 70%,#d92d2d 70% 84%,#090909 84% 100%)}
+.footer-main>*:not(.footer-emblem){position:relative;z-index:2}
+.footer-emblem{position:absolute;z-index:1;top:50%;right:3%;width:31%;height:auto;opacity:.13;transform:translateY(-50%);pointer-events:none}
+.footer-bottom{color:#fff;background:#090909;border-top-color:#090909}
+@media(max-width:900px){
+  .name-mark.heading{white-space:normal}
+  .constituency-emblem{top:7%;right:-12%;width:95%}
+  .footer-main{background:linear-gradient(145deg,#fff 0 76%,#d92d2d 76% 88%,#090909 88% 100%)}
+  .footer-emblem{right:-5%;width:45%;opacity:.1}
+}
+@media(max-width:620px){
+  .brand .name-mark{font-size:17px}
+  .hero-name .name-mark{font-size:clamp(34px,10vw,44px)}
+  .about .large-prose p{padding:18px;border-left-width:5px;border-radius:15px}
+  .timeline article:hover{padding-left:10px;padding-right:10px}
+  .constituency-emblem{top:10%;right:-28%;width:135%;opacity:.11}
+  .footer-main{background:linear-gradient(155deg,#fff 0 80%,#d92d2d 80% 90%,#090909 90% 100%)}
+  .footer-emblem{right:-20%;width:75%;opacity:.08}
 }

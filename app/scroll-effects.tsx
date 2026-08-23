@@ -8,6 +8,7 @@ const revealSelector = [
   "main section:not(.hero) h3",
   "main section:not(.hero) .prose > p",
   "main section:not(.hero) .lead-statement",
+  "main section:not(.hero) .timeline article",
   "main section:not(.hero) .development-lead > p",
   "main section:not(.hero) .rhythm-copy > p",
   "main section:not(.hero) .news-lead",
@@ -62,13 +63,10 @@ export default function ScrollEffects() {
     let visionLoopWidth = 0;
     let clonedVisionCards: HTMLElement[] = [];
     let isRailVisible = false;
-    let isHovered = false;
     let isFocused = false;
     let resumeAt = 0;
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const pauseTemporarily = (milliseconds: number) => { resumeAt = performance.now() + milliseconds; };
-    const onPointerEnter = () => { isHovered = true; };
-    const onPointerLeave = () => { isHovered = false; };
     const onFocusIn = () => { isFocused = true; };
     const onFocusOut = () => { isFocused = false; };
     const onWheel = () => pauseTemporarily(2800);
@@ -89,9 +87,9 @@ export default function ScrollEffects() {
       const elapsed = Math.min(timestamp - lastFrame, 32);
       lastFrame = timestamp;
 
-      if (visionRail && isRailVisible && !isHovered && !isFocused && timestamp >= resumeAt) {
+      if (visionRail && isRailVisible && !isFocused && timestamp >= resumeAt) {
         if (visionLoopWidth > 0) {
-          visionRail.scrollLeft += elapsed * 0.026;
+          visionRail.scrollLeft += elapsed * 0.095;
           if (visionRail.scrollLeft >= visionLoopWidth) {
             visionRail.scrollLeft -= visionLoopWidth;
           }
@@ -117,8 +115,6 @@ export default function ScrollEffects() {
       updateVisionLoopWidth();
       visionResizeObserver.observe(visionRail);
       visionObserver.observe(visionRail);
-      visionRail.addEventListener("pointerenter", onPointerEnter);
-      visionRail.addEventListener("pointerleave", onPointerLeave);
       visionRail.addEventListener("focusin", onFocusIn);
       visionRail.addEventListener("focusout", onFocusOut);
       visionRail.addEventListener("wheel", onWheel, { passive: true });
@@ -132,8 +128,6 @@ export default function ScrollEffects() {
       visionObserver.disconnect();
       visionResizeObserver.disconnect();
       window.cancelAnimationFrame(visionFrame);
-      visionRail?.removeEventListener("pointerenter", onPointerEnter);
-      visionRail?.removeEventListener("pointerleave", onPointerLeave);
       visionRail?.removeEventListener("focusin", onFocusIn);
       visionRail?.removeEventListener("focusout", onFocusOut);
       visionRail?.removeEventListener("wheel", onWheel);
