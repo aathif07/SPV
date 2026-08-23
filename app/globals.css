@@ -104,3 +104,48 @@
 .footer{background:#18191c}
 .footer-copy{color:#c9c5bd}
 .footer-bottom{border-top-color:#3b3b3e}
+
+/* Floating navigation and portrait-safe gallery framing. */
+html{scroll-padding-top:108px}
+.site-header{
+  top:14px;
+  width:min(calc(100% - 32px),1540px);
+  min-height:72px;
+  margin:14px auto 0;
+  padding:0 18px 0 16px;
+  border:1px solid rgba(32,33,37,.1);
+  border-radius:24px;
+  background:rgba(255,253,249,.92);
+  box-shadow:0 14px 40px rgba(32,33,37,.08);
+}
+.brand-mark{width:44px;height:44px;border-radius:14px;box-shadow:0 8px 18px rgba(148,58,37,.18)}
+.nav-links a:not(.nav-cta){position:relative;padding:12px 3px;color:#3d4148}
+.nav-links a:not(.nav-cta):after{content:"";position:absolute;left:3px;right:3px;bottom:6px;height:1px;background:var(--blue);transform:scaleX(0);transform-origin:right;transition:transform .25s ease}
+.nav-links a:not(.nav-cta):hover:after{transform:scaleX(1);transform-origin:left}
+.nav-cta{padding:13px 21px;border-radius:14px;box-shadow:0 8px 18px rgba(148,58,37,.16);transition:transform .25s ease,background-color .25s ease}
+.nav-cta:hover{background:var(--blue-deep);transform:translateY(-2px)}
+.gallery-grid{gap:18px}
+.gallery-grid figure{box-shadow:0 16px 40px rgba(32,33,37,.08);transition:border-color .28s ease,box-shadow .28s ease}
+.gallery-grid figure:hover{box-shadow:0 20px 48px rgba(32,33,37,.12)}
+.gallery-grid .gallery-cutout .gallery-cutout-photo{
+  z-index:1!important;
+  object-fit:contain!important;
+  object-position:center top!important;
+  padding:clamp(14px,2vw,28px) 7% 0!important;
+  transform:none!important;
+  transition:filter .35s ease!important;
+}
+.gallery-grid .gallery-cutout:hover .gallery-cutout-photo{transform:none!important;filter:drop-shadow(0 18px 22px rgba(32,33,37,.18))}
+@media(max-width:900px){
+  .site-header{top:10px;width:calc(100% - 20px);min-height:64px;margin-top:10px;padding:0 10px 0 12px;border-radius:20px}
+  .mobile-menu summary{border-radius:14px}
+  .mobile-menu>div{top:72px;left:0;right:0;padding:10px 18px 14px;border:1px solid var(--line);border-radius:18px;background:rgba(255,253,249,.98);box-shadow:0 18px 40px rgba(32,33,37,.12)}
+  .gallery-grid{gap:12px}
+}
+@media(max-width:620px){
+  html{scroll-padding-top:90px}
+  .site-header{min-height:60px;border-radius:18px}
+  .brand-mark{width:40px;height:40px;border-radius:12px}
+  .mobile-menu summary{width:40px;height:40px;padding:12px 10px}
+  .gallery-grid .gallery-cutout .gallery-cutout-photo{padding:10px 2% 0!important}
+}
