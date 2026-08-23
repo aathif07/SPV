@@ -550,3 +550,9 @@ body,main{background:#fff}
   .footer-main{background:linear-gradient(155deg,#fff 0 80%,#d92d2d 80% 90%,#090909 90% 100%)}
   .footer-emblem{right:-20%;width:75%;opacity:.08}
 }
+
+/* Party emblem lockup for the red leadership gallery portrait. */
+.gallery-grid .gallery-cutout .gallery-emblem{position:absolute!important;z-index:3!important;top:28px!important;right:28px!important;left:auto!important;bottom:auto!important;width:clamp(104px,11vw,168px)!important;height:auto!important;padding:10px!important;border:2px solid #090909;border-radius:50%;background:#fff;object-fit:contain!important;box-shadow:7px 7px 0 #090909;filter:none!important}
+.gallery-grid .gallery-cutout .gallery-cutout-photo{z-index:2!important}
+@media(max-width:900px){.gallery-grid .gallery-cutout .gallery-emblem{top:20px!important;right:20px!important;width:118px!important;padding:8px!important;box-shadow:5px 5px 0 #090909}}
+@media(max-width:620px){.gallery-grid .gallery-cutout .gallery-emblem{top:14px!important;right:14px!important;width:86px!important;padding:6px!important;border-width:1.5px;box-shadow:4px 4px 0 #090909}}
