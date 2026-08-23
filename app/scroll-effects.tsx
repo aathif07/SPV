@@ -59,7 +59,8 @@ export default function ScrollEffects() {
 
     let visionFrame = 0;
     let lastFrame = 0;
-    let direction = 1;
+    let visionLoopWidth = 0;
+    let clonedVisionCards: HTMLElement[] = [];
     let isRailVisible = false;
     let isHovered = false;
     let isFocused = false;
@@ -76,6 +77,12 @@ export default function ScrollEffects() {
       ([entry]) => { isRailVisible = entry.isIntersecting; },
       { threshold: 0.18 },
     );
+    const updateVisionLoopWidth = () => {
+      if (visionRail && clonedVisionCards[0] && visionRail.firstElementChild) {
+        visionLoopWidth = clonedVisionCards[0].offsetLeft - (visionRail.firstElementChild as HTMLElement).offsetLeft;
+      }
+    };
+    const visionResizeObserver = new ResizeObserver(updateVisionLoopWidth);
 
     const moveVisionRail = (timestamp: number) => {
       if (!lastFrame) lastFrame = timestamp;
@@ -83,17 +90,32 @@ export default function ScrollEffects() {
       lastFrame = timestamp;
 
       if (visionRail && isRailVisible && !isHovered && !isFocused && timestamp >= resumeAt) {
-        const maxScroll = visionRail.scrollWidth - visionRail.clientWidth;
-        if (maxScroll > 0) {
-          visionRail.scrollLeft += direction * elapsed * 0.026;
-          if (visionRail.scrollLeft >= maxScroll - 1) direction = -1;
-          if (visionRail.scrollLeft <= 1) direction = 1;
+        if (visionLoopWidth > 0) {
+          visionRail.scrollLeft += elapsed * 0.026;
+          if (visionRail.scrollLeft >= visionLoopWidth) {
+            visionRail.scrollLeft -= visionLoopWidth;
+          }
         }
       }
       visionFrame = window.requestAnimationFrame(moveVisionRail);
     };
 
     if (visionRail && !reducedMotion) {
+      const sourceCards = Array.from(visionRail.children) as HTMLElement[];
+      clonedVisionCards = sourceCards.map(card => {
+        const clone = card.cloneNode(true) as HTMLElement;
+        clone.classList.add("vision-clone");
+        clone.setAttribute("aria-hidden", "true");
+        clone.querySelectorAll<HTMLElement>(".text-reveal").forEach(item => {
+          item.classList.remove("text-reveal", "is-visible");
+          item.style.removeProperty("--reveal-delay");
+        });
+        visionRail.appendChild(clone);
+        return clone;
+      });
+      visionRail.classList.add("is-looping");
+      updateVisionLoopWidth();
+      visionResizeObserver.observe(visionRail);
       visionObserver.observe(visionRail);
       visionRail.addEventListener("pointerenter", onPointerEnter);
       visionRail.addEventListener("pointerleave", onPointerLeave);
@@ -108,6 +130,7 @@ export default function ScrollEffects() {
       revealObserver.disconnect();
       heroObserver.disconnect();
       visionObserver.disconnect();
+      visionResizeObserver.disconnect();
       window.cancelAnimationFrame(visionFrame);
       visionRail?.removeEventListener("pointerenter", onPointerEnter);
       visionRail?.removeEventListener("pointerleave", onPointerLeave);
@@ -115,6 +138,8 @@ export default function ScrollEffects() {
       visionRail?.removeEventListener("focusout", onFocusOut);
       visionRail?.removeEventListener("wheel", onWheel);
       visionRail?.removeEventListener("touchstart", onTouchStart);
+      clonedVisionCards.forEach(card => card.remove());
+      visionRail?.classList.remove("is-looping");
       root.classList.remove("effects-ready");
     };
   }, []);
