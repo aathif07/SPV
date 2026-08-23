@@ -13,6 +13,15 @@ const revealSelector = [
   "main section:not(.hero) .news-lead",
   "main section:not(.hero) .gallery-head > p",
   "main section:not(.hero) .connect-intro > p",
+  "main section:not(.hero) article > p",
+  "main section:not(.hero) .people-copy > p",
+  "main section:not(.hero) .focus-block > p",
+  "main .rural-section > div > p",
+  "main section:not(.hero) .constituency-copy > p",
+  "main section:not(.hero) .service-copy > p",
+  "main section:not(.hero) li",
+  ".footer h2",
+  ".footer p",
 ].join(",");
 
 export default function ScrollEffects() {
