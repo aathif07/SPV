@@ -74,3 +74,12 @@
 .rural-quote{border-top:0;background:var(--card-gray);transition:background-color .28s ease,transform .28s ease}
 .rural-quote:hover{background:var(--card-green);transform:translateY(-5px)}
 @media(max-width:620px){:root{--card-radius:20px}.vision-grid,.news-grid,.strip-grid{gap:10px}.corner-card{right:12px;bottom:12px}.people-steps article{border-radius:18px}}
+
+/* Vision priorities: two-row, left-to-right horizontal rail. */
+.vision-grid{display:grid;grid-template-columns:repeat(4,minmax(360px,410px));grid-template-rows:repeat(2,minmax(270px,auto));grid-auto-flow:row;justify-content:start;max-width:var(--max);overflow-x:auto;overflow-y:hidden;padding:0 0 20px;scroll-snap-type:x proximity;overscroll-behavior-inline:contain;-webkit-overflow-scrolling:touch;scrollbar-color:#6f86a4 rgba(255,255,255,.12);scrollbar-width:thin}
+.vision-grid:focus-visible{outline:2px solid #fff;outline-offset:8px}
+.vision-grid article{min-height:270px;scroll-snap-align:start}
+.vision-grid::-webkit-scrollbar{height:8px}
+.vision-grid::-webkit-scrollbar-track{border-radius:999px;background:rgba(255,255,255,.12)}
+.vision-grid::-webkit-scrollbar-thumb{border-radius:999px;background:#6f86a4}
+@media(max-width:620px){.vision-grid{grid-template-columns:repeat(4,minmax(78vw,78vw));grid-template-rows:repeat(2,minmax(245px,auto));padding-bottom:16px}.vision-grid article{min-height:245px}}
