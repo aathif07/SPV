@@ -418,3 +418,43 @@ h2{font-family:Impact,"Arial Black",Arial,sans-serif;font-weight:900;text-transf
   .constituency-copy{padding:68px 18px}
   .footer{width:calc(100% - 16px);margin-top:16px;border-radius:24px 24px 0 0}
 }
+
+/* Pure-white refinement with a dedicated AIADMK-style Velumani wordmark. */
+body,main{background:#fff}
+.hero{width:min(calc(100% - 36px),1620px);max-width:1620px;min-height:auto;grid-template-columns:minmax(0,1.05fr) minmax(420px,.95fr);background:#fff}
+.hero-copy,.hero-visual{background:#fff}
+.hero-copy h1{font-size:clamp(56px,6vw,104px);line-height:.87}
+.hero-copy h1 span{background:none;color:#090909;-webkit-text-stroke:0}
+.hero-copy h1 em{background:none;color:#d92d2d;-webkit-text-stroke:0}
+.hero-name{display:inline-block;padding:14px 20px 12px;border:2px solid #090909;border-radius:18px;background:#090909;line-height:1}
+.hero-name span{display:block;font-family:Impact,"Arial Black",Arial,sans-serif;font-size:clamp(38px,3.4vw,58px);font-weight:900;line-height:.9;letter-spacing:.02em;text-transform:uppercase;background:linear-gradient(180deg,#e43737 0 48%,#090909 48% 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-stroke:2.4px #fff;paint-order:stroke fill}
+.hero-intro>div>p{margin-top:18px}
+.hero-visual{min-height:690px}
+.hero-photo{padding-top:14px}
+.section,.gallery-section,.connect-section,.constituency{width:min(calc(100% - 36px),1520px);max-width:1520px;background:#fff}
+.vision-section{color:#090909;background:#fff;border-color:rgba(9,9,9,.18)}
+.vision-section h2{color:#090909}
+.vision-section .section-head:after{background:linear-gradient(90deg,#090909 0 50%,#d92d2d 50%)}
+.vision-intro .prose{color:#5d5d5d}
+.vision-grid article{border:2px solid #090909}
+.vision-grid article.featured{border-color:#d92d2d}
+.footer{color:#090909;background:#fff;border:2px solid #090909;border-bottom:0}
+.footer h2{color:#090909}
+.footer .section-label{color:#d92d2d}
+.footer-copy{color:#5d5d5d}
+.footer-button{color:#fff;border-color:#090909;background:#090909}
+.footer-button:hover{border-color:#d92d2d;background:#d92d2d}
+.footer-bottom{border-top-color:#090909}
+@media(max-width:900px){
+  .hero{width:calc(100% - 24px);grid-template-columns:1fr}
+  .hero-visual{min-height:600px}
+  .section,.gallery-section,.connect-section,.constituency{width:calc(100% - 24px)}
+}
+@media(max-width:620px){
+  .hero{width:calc(100% - 16px)}
+  .hero-copy h1{font-size:clamp(41px,12.5vw,54px)}
+  .hero-name{padding:11px 14px 10px;border-radius:14px}
+  .hero-name span{font-size:clamp(32px,10vw,42px);-webkit-text-stroke:1.8px #fff}
+  .hero-visual{min-height:470px}
+  .section,.gallery-section,.connect-section,.constituency{width:calc(100% - 16px)}
+}
