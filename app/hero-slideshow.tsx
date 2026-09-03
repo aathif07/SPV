@@ -5,22 +5,40 @@ import { useEffect, useRef, useState } from "react";
 
 const slides = [
   {
-    src: "/images/sp-velumani-standing.jpg",
-    alt: "S. P. Velumani wearing the AIADMK colours",
-    label: "Leadership",
+    src: "/images/public-toi.png",
+    alt: "S. P. Velumani speaking at a press interaction",
+    label: "Voice of the people",
+    position: "center 42%",
+  },
+  {
+    src: "/images/public-news-minute.jpg",
+    alt: "S. P. Velumani addressing a public meeting",
+    label: "Public leadership",
     position: "center 32%",
   },
   {
-    src: "/images/sp-velumani-commons.jpg",
-    alt: "S. P. Velumani greeting with folded hands",
-    label: "Public service",
-    position: "center 26%",
+    src: "/images/public-nie-2021.jpg",
+    alt: "S. P. Velumani speaking at an AIADMK event",
+    label: "Party programme",
+    position: "center 38%",
   },
   {
-    src: "/images/sp-velumani-public-meeting.jpg",
-    alt: "S. P. Velumani at a public engagement",
-    label: "With the people",
-    position: "center 42%",
+    src: "/images/public-samayam.jpg",
+    alt: "S. P. Velumani greeting the public with folded hands",
+    label: "People first",
+    position: "center 34%",
+  },
+  {
+    src: "/images/public-nie-2025.jpg",
+    alt: "S. P. Velumani at a public programme",
+    label: "Public service",
+    position: "center 36%",
+  },
+  {
+    src: "/images/public-dtnext.jpg",
+    alt: "Portrait of S. P. Velumani",
+    label: "Experience",
+    position: "center 28%",
   },
 ];
 
@@ -79,9 +97,6 @@ export default function HeroSlideshow() {
       <div className="hero-party-band" aria-label="AIADMK party colours">
         <span>AIADMK</span><span>Black</span><span>White</span><span>Red</span>
       </div>
-      <span className="hero-word" aria-hidden="true">SPV</span>
-      <Image src="/images/aiadmk-emblem-transparent.png" alt="" aria-hidden="true" width={1254} height={1254} className="hero-emblem" />
-      <span className="hero-rail" aria-hidden="true">S. P. VELUMANI · TAMIL NADU</span>
       <div className="hero-slides">
         {slides.map((slide, index) => (
           <figure className={`hero-slide ${index === active ? "is-active" : ""}`} key={slide.src} aria-hidden={index !== active}>
@@ -98,6 +113,7 @@ export default function HeroSlideshow() {
         ))}
       </div>
       <div className="hero-slide-controls" role="group" aria-label="Choose featured photograph">
+        <button type="button" className="slide-arrow" aria-label="Previous photograph" onClick={() => setActive(current => (current - 1 + slides.length) % slides.length)}>←</button>
         {slides.map((slide, index) => (
           <button
             type="button"
@@ -108,8 +124,9 @@ export default function HeroSlideshow() {
             key={slide.src}
           ><span>{String(index + 1).padStart(2, "0")}</span></button>
         ))}
+        <button type="button" className="slide-arrow" aria-label="Next photograph" onClick={() => setActive(current => (current + 1) % slides.length)}>→</button>
       </div>
-      <p className="hero-photo-credit">Public imagery · Wikimedia Commons &amp; supplied media sources</p>
+      <p className="hero-photo-credit">Public imagery · supplied media sources</p>
     </aside>
   );
 }
