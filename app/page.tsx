@@ -3,6 +3,10 @@ import Image from "next/image";
 import type { ReactNode } from "react";
 import ScrollEffects from "./scroll-effects";
 import HeroSlideshow from "./hero-slideshow";
+import SiteHeader from "./components/site-header";
+import SiteFooter from "./components/site-footer";
+import { NameMark } from "./components/name-mark";
+import Link from "next/link";
 
 const leadership = [
   ["Political Leadership", "Working with AIADMK cadres and communities across Tamil Nadu."],
@@ -23,17 +27,12 @@ const vision = [
 ];
 const news = [["Political Updates", "Updates from political programmes and organisational activities."], ["Public Activities", "Community interactions and public engagements."], ["Development", "Updates on development-related initiatives."], ["Speeches & Statements", "Important speeches, views and public statements."], ["Media Coverage", "News and interviews featuring S. P. Velumani."]];
 
-function NameMark({ className = "" }: { className?: string }) { return <span className={`name-mark ${className}`.trim()}>S. P. Velumani</span>; }
 function SectionHead({ label, title }: { label: ReactNode; title: ReactNode }) { return <div className="section-head"><p className="section-label">{label}</p><h2>{title}</h2></div>; }
 
 export default function Home() {
   return <main>
     <ScrollEffects />
-    <header className="site-header">
-      <a className="brand" href="#top" aria-label="S. P. Velumani home"><NameMark className="brand-name" /></a>
-      <nav className="nav-links" aria-label="Primary navigation"><a href="#about">About</a><a href="#leadership">Leadership</a><a href="#vision">Vision</a><a className="nav-cta" href="#connect">Connect</a></nav>
-      <details className="mobile-menu"><summary aria-label="Open navigation"><span /><span /></summary><div><a href="#about">About</a><a href="#leadership">Leadership</a><a href="#vision">Vision</a><a href="#connect">Connect</a></div></details>
-    </header>
+    <SiteHeader onHome />
 
     <section className="hero" id="top"><div className="hero-copy">
       <h1><span>A Leader Committed to the Progress of</span><em>Tamil Nadu</em></h1>
@@ -49,12 +48,12 @@ export default function Home() {
 
     <section className="constituency"><div className="constituency-image"><span aria-hidden="true">THONDAMUTHUR</span><Image className="constituency-emblem" src="/images/aiadmk-emblem-transparent.png" alt="" aria-hidden="true" width={1254} height={1254} /><Image className="constituency-photo" src="/images/sp-velumani-greeting-cutout.png" alt="S. P. Velumani greeting the public" fill sizes="(max-width: 800px) 100vw, 50vw" /></div><div className="constituency-copy"><SectionHead label="Thondamuthur" title="A Constituency Close to the Heart" /><p>Thondamuthur remains central to <NameMark className="inline" />'s political journey and grassroots engagement.</p><ul>{["Development activities","Public interactions","Constituency visits","Community programmes"].map(x=><li key={x}>{x}</li>)}</ul><a className="button button-primary" href="#gallery">Explore Thondamuthur <span>↗</span></a></div></section>
 
-    <section className="section news-section"><SectionHead label="News & Updates" title={<>Latest From <NameMark className="heading" /></>} /><div className="news-intro"><p className="news-lead">Stay connected with the latest activities, political programmes, public meetings, development initiatives and statements.</p><h3 className="sub-label">Categories · 05</h3></div><div className="news-grid">{news.map(([title,text],i)=><article className={i===0?"news-featured":""} key={title}><Image className="news-leaf-watermark" src="/images/aiadmk-emblem-transparent.png" alt="" aria-hidden="true" width={1254} height={1254} /><div className="news-card-top"><span>{String(i+1).padStart(2,"0")}</span><span className="news-leaf-mark"><Image src="/images/aiadmk-emblem-transparent.png" alt="" aria-hidden="true" width={1254} height={1254} /></span></div><div className="news-card-copy"><h3>{title}</h3><p>{text}</p></div><b aria-hidden="true">↗</b></article>)}</div></section>
+    <section className="section news-section"><SectionHead label="News & Updates" title={<>Latest From <NameMark className="heading" /></>} /><div className="news-intro"><p className="news-lead">Stay connected with the latest activities, political programmes, public meetings, development initiatives and statements.</p><h3 className="sub-label">Categories · 05</h3><Link className="button button-primary news-all-cta" href="/blog">Read All Posts <span>↗</span></Link></div><div className="news-grid">{news.map(([title,text],i)=><article className={i===0?"news-featured":""} key={title}><Image className="news-leaf-watermark" src="/images/aiadmk-emblem-transparent.png" alt="" aria-hidden="true" width={1254} height={1254} /><div className="news-card-top"><span>{String(i+1).padStart(2,"0")}</span><span className="news-leaf-mark"><Image src="/images/aiadmk-emblem-transparent.png" alt="" aria-hidden="true" width={1254} height={1254} /></span></div><div className="news-card-copy"><h3>{title}</h3><p>{text}</p></div><b aria-hidden="true">↗</b></article>)}</div></section>
 
     <section className="gallery-section" id="gallery"><div className="gallery-head"><SectionHead label="Media & Gallery" title="Moments of Leadership" /><p>Public moments from across his political journey, community engagement and party programmes.</p></div><div className="gallery-grid"><figure className="gallery-tall gallery-cutout"><Image className="gallery-cutout-photo" src="/images/sp-velumani-namaste-cutout.png" alt="S. P. Velumani greeting with folded hands" fill sizes="(max-width: 800px) 100vw, 48vw" /></figure><figure><Image src="/images/sp-velumani-commons.jpg" alt="S. P. Velumani greeting with folded hands" fill sizes="(max-width: 800px) 50vw, 25vw" /></figure><figure><Image src="/images/public-nakkheeran.webp" alt="S. P. Velumani speaking at a podium" fill sizes="(max-width: 800px) 50vw, 25vw" /></figure><figure><Image src="/images/public-deccan-herald.jpg" alt="S. P. Velumani during an interview" fill sizes="(max-width: 800px) 50vw, 25vw" /></figure><figure><Image src="/images/public-national-herald.jpg" alt="S. P. Velumani greeting with folded hands" fill sizes="(max-width: 800px) 50vw, 25vw" /></figure><figure><Image src="/images/sp-velumani-public-meeting.jpg" alt="S. P. Velumani at a public engagement" fill sizes="(max-width: 800px) 50vw, 25vw" /></figure><figure><Image src="/images/sp-velumani-greeting.jpg" alt="S. P. Velumani greeting the public" fill sizes="(max-width: 800px) 50vw, 25vw" /></figure></div><div className="gallery-categories"><h3>Gallery Categories</h3>{["Political Events","Public Meetings","People's Interactions","Government Activities","Constituency Visits","Party Programmes","Social & Community Events","Speeches","Media Interviews"].map(x=><span key={x}>{x}</span>)}</div><p className="media-note">Selected photography sourced from the public links supplied, including Wikimedia Commons and news-media pages. Images remain credited to their respective publishers and creators.</p></section>
 
     <section className="connect-section" id="connect"><div className="connect-intro"><p className="section-label">Connect With the Leader</p><h2>Your Voice Matters</h2><p>Leadership begins with listening.</p><p>Whether you have a suggestion, concern, idea or message, your voice deserves to be heard.</p></div><form className="contact-form"><h3>Share Your Voice</h3><label>Name<input name="name" type="text" /></label><label>Mobile Number<input name="mobile" type="tel" /></label><label>District<input name="district" type="text" /></label><label>Constituency<input name="constituency" type="text" /></label><label className="wide">Message<textarea name="message" rows={4} /></label><button type="submit">Submit Your Message <span>↗</span></button></form></section>
 
-    <footer className="footer"><div className="footer-main"><Image className="footer-emblem" src="/images/aiadmk-emblem-transparent.png" alt="" aria-hidden="true" width={1254} height={1254} /><p className="section-label">Together, We Build the Future</p><h2>Leadership. Service. Tamil Nadu.</h2><div className="footer-copy"><p>Empowering people, creating opportunity and strengthening communities across Tamil Nadu.</p></div><p className="signature"><NameMark /></p><a className="button footer-button" href="#connect">Connect With Us <span>↗</span></a></div><div className="footer-bottom"><span>SPV</span><a href="#top">Back to top ↑</a></div></footer>
+    <SiteFooter />
   </main>;
 }

@@ -26,6 +26,11 @@ RUN npm ci --omit=dev --ignore-scripts --no-audit --no-fund \
     && npm cache clean --force
 COPY --from=builder --chown=node:node /app/dist ./dist
 
+# Needed in the running container so `npm run db:migrate` and
+# `npm run admin:create` work against the production database.
+COPY --chown=node:node db/migrations ./db/migrations
+COPY --chown=node:node scripts ./scripts
+
 USER node
 EXPOSE 3000
 HEALTHCHECK --interval=30s --timeout=5s --start-period=15s --retries=3 \

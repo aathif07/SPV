@@ -1,0 +1,33 @@
+# S3-compatible object storage for blog images.
+#
+# In Dokploy: Create Compose -> Name "spv-s3" -> Compose Type "Docker Compose"
+# (not "Stack" — Stack runs on Swarm and makes the volume and domain setup
+# harder than it needs to be). Paste this file in, set the two environment
+# variables, then add the domains described in docs/S3-SETUP.md.
+
+services:
+  minio:
+    image: minio/minio:RELEASE.2025-04-22T22-12-26Z
+    restart: unless-stopped
+    command: server /data --console-address ":9001"
+    environment:
+      # Set these in the Dokploy "Environment" tab — never commit them.
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
+      # Lets the browser upload straight to the bucket with a presigned URL.
+      MINIO_API_CORS_ALLOW_ORIGIN: ${MINIO_CORS_ORIGINS}
+      # Where the web console lives, so its redirects land in the right place.
+      MINIO_BROWSER_REDIRECT_URL: ${MINIO_CONSOLE_URL}
+    volumes:
+      - minio-data:/data
+    expose:
+      - "9000"   # S3 API   -> point s3.yourdomain.com here
+      - "9001"   # Console  -> point console-s3.yourdomain.com here
+    healthcheck:
+      test: ["CMD", "mc", "ready", "local"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+volumes:
+  minio-data:
