@@ -32,6 +32,9 @@ export default function SiteHeader({ onHome = false }: { onHome?: boolean }) {
         <NavLink className="nav-cta" href={`${prefix}#connect`}>
           Connect
         </NavLink>
+        <NavLink className="nav-admin" href="/admin/login">
+          Admin Login
+        </NavLink>
       </nav>
 
       <details className="mobile-menu">
@@ -46,6 +49,7 @@ export default function SiteHeader({ onHome = false }: { onHome?: boolean }) {
             </NavLink>
           ))}
           <NavLink href={`${prefix}#connect`}>Connect</NavLink>
+          <NavLink href="/admin/login">Admin Login</NavLink>
         </div>
       </details>
     </header>
