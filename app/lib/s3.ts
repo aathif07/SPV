@@ -113,5 +113,19 @@ export async function uploadObject(
   if (!response.ok) {
     throw new Error(`Storage upload failed (${response.status}).`);
   }
-  return { publicUrl: `${config.publicBaseUrl}/${key}`, key };
+  return { publicUrl: `/api/media/${key}`, key };
+}
+
+/** Fetches a stored object through the server, keeping Garage credentials private. */
+export async function downloadObject(key: string): Promise<Response | null> {
+  const config = getS3Config();
+  if (!config) return null;
+  const client = new AwsClient({
+    accessKeyId: config.accessKeyId,
+    secretAccessKey: config.secretAccessKey,
+    region: config.region,
+    service: "s3",
+  });
+  const signed = await client.sign(new Request(objectUrl(config, key), { method: "GET" }));
+  return fetch(signed);
 }
