@@ -106,9 +106,6 @@ export default function RichTextEditor({
         <ToolbarButton editor={editor} label="❝" title="Quote" isActive={editor.isActive("blockquote")} onClick={() => editor.chain().focus().toggleBlockquote().run()} />
         <span className="editor-sep" />
         <ToolbarButton editor={editor} label="Link" title="Add or edit link" isActive={editor.isActive("link")} onClick={setLink} />
-        {uploadImage ? (
-          <ToolbarButton editor={editor} label="Image" title="Insert image" onClick={() => fileInput.current?.click()} />
-        ) : null}
         <span className="editor-sep" />
         <ToolbarButton editor={editor} label="↶" title="Undo" disabled={!editor.can().undo()} onClick={() => editor.chain().focus().undo().run()} />
         <ToolbarButton editor={editor} label="↷" title="Redo" disabled={!editor.can().redo()} onClick={() => editor.chain().focus().redo().run()} />
@@ -116,16 +113,18 @@ export default function RichTextEditor({
 
       <EditorContent editor={editor} />
 
-      <input
-        ref={fileInput}
-        type="file"
-        accept="image/*"
-        hidden
-        onChange={(event) => {
-          void pickImage(event.target.files?.[0]);
-          event.target.value = "";
-        }}
-      />
+      {uploadImage ? (
+        <input
+          ref={fileInput}
+          type="file"
+          accept="image/*"
+          hidden
+          onChange={(event) => {
+            void pickImage(event.target.files?.[0]);
+            event.target.value = "";
+          }}
+        />
+      ) : null}
     </div>
   );
 }
