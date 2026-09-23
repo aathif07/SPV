@@ -1160,15 +1160,15 @@ body,main{background:#fff}
   min-height: 340px;
   padding: 20px 22px;
   font-size: 16px;
+  font-weight: 400;
   line-height: 1.72;
   outline: none;
 }
 .editor-surface:focus { outline: none; }
 .editor-surface > :first-child { margin-top: 0; }
 .editor-surface p { margin: 0 0 16px; }
-.editor-surface h2 { font-size: 26px; margin: 26px 0 12px; }
-.editor-surface h3 { font-size: 21px; margin: 22px 0 10px; }
-.editor-surface h4 { font-size: 18px; margin: 20px 0 10px; }
+.editor-surface h2, .editor-surface h3, .editor-surface h4 { font-size: inherit; font-weight: 400; margin: 0 0 16px; }
+.editor-surface strong, .editor-surface b { font-weight: 400; }
 .editor-surface ul, .editor-surface ol { padding-left: 22px; margin: 0 0 16px; }
 .editor-surface img { max-width: 100%; height: auto; border-radius: 12px; }
 .editor-surface a { color: var(--blue); text-decoration: underline; }
