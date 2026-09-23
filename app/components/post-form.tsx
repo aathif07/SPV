@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import RichTextEditor from "./rich-text-editor";
+import { toMediaUrl } from "../lib/media-url";
 
 export type PostFormValues = {
   id: string | null;
@@ -302,7 +303,7 @@ export default function PostForm({
 
             {values.coverImageUrl ? (
               // eslint-disable-next-line @next/next/no-img-element
-              <img className="cover-preview" src={values.coverImageUrl} alt="Cover preview" />
+              <img className="cover-preview" src={toMediaUrl(values.coverImageUrl)} alt="Cover preview" />
             ) : (
               <div className="cover-preview is-empty">No image yet</div>
             )}

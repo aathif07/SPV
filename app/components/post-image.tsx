@@ -16,9 +16,7 @@ export default function PostImage({
   if (!src) {
     return <div className={`post-image-placeholder ${className ?? ""}`.trim()} aria-hidden="true" />;
   }
-  const mediaSrc = src.startsWith("https://spv.web.welocalhost.com/")
-    ? `/api/media/${src.slice("https://spv.web.welocalhost.com/".length)}`
-    : src;
+  const mediaSrc = toMediaUrl(src);
   return (
     // eslint-disable-next-line @next/next/no-img-element
     <img
@@ -30,3 +28,4 @@ export default function PostImage({
     />
   );
 }
+import { toMediaUrl } from "../lib/media-url";
