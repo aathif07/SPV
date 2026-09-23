@@ -67,7 +67,7 @@ export default function PostForm({
     }));
   }
 
-  /** Presign, PUT straight to the bucket, return the public URL. */
+  /** Upload through the backend so browser uploads do not depend on bucket CORS. */
   async function uploadImage(file: File): Promise<string | null> {
     setError(null);
 
@@ -81,28 +81,18 @@ export default function PostForm({
 
     setUploading(true);
     try {
-      const presign = await fetch("/api/admin/upload-url", {
+      const body = new FormData();
+      body.append("file", file);
+      const upload = await fetch("/api/admin/upload", {
         method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ filename: file.name, contentType: file.type }),
+        body,
       });
-      if (!presign.ok) {
-        const body = await presign.json().catch(() => ({}));
-        setError(body.error ?? "Image storage is not configured yet.");
+      const result = await upload.json().catch(() => ({}));
+      if (!upload.ok) {
+        setError(result.error ?? "Image storage is not configured yet.");
         return null;
       }
-      const { uploadUrl, publicUrl } = await presign.json();
-
-      const put = await fetch(uploadUrl, {
-        method: "PUT",
-        headers: { "content-type": file.type },
-        body: file,
-      });
-      if (!put.ok) {
-        setError(`Upload failed (${put.status}). Check the bucket CORS rules.`);
-        return null;
-      }
-      return publicUrl as string;
+      return result.publicUrl as string;
     } catch (cause) {
       setError(`Upload failed: ${String(cause)}`);
       return null;

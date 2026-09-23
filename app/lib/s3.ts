@@ -85,3 +85,33 @@ export async function createUploadUrl(
     key,
   };
 }
+
+/** Uploads an object from the server, avoiding browser CORS requirements. */
+export async function uploadObject(
+  filename: string,
+  contentType: string,
+  body: ArrayBuffer,
+): Promise<{ publicUrl: string; key: string } | null> {
+  const config = getS3Config();
+  if (!config) return null;
+
+  const key = buildObjectKey(filename);
+  const client = new AwsClient({
+    accessKeyId: config.accessKeyId,
+    secretAccessKey: config.secretAccessKey,
+    region: config.region,
+    service: "s3",
+  });
+  const signed = await client.sign(
+    new Request(objectUrl(config, key), {
+      method: "PUT",
+      headers: { "content-type": contentType },
+      body,
+    }),
+  );
+  const response = await fetch(signed);
+  if (!response.ok) {
+    throw new Error(`Storage upload failed (${response.status}).`);
+  }
+  return { publicUrl: `${config.publicBaseUrl}/${key}`, key };
+}
