@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { NameMark } from "./name-mark";
 
 /**
@@ -57,24 +56,17 @@ export default function SiteHeader({ onHome = false }: { onHome?: boolean }) {
 }
 
 /**
- * Same-page anchors stay plain `<a>` so the CSS smooth scroll handles them;
- * anything that leaves the page routes through `next/link`.
+ * Use plain anchors for all navigation. This keeps the public site reliable
+ * with the current Vinext runtime and still preserves smooth same-page scroll.
  */
 function NavLink({
   href,
   children,
   ...rest
 }: { href: string } & React.ComponentPropsWithoutRef<"a">) {
-  if (href.startsWith("#")) {
-    return (
-      <a href={href} {...rest}>
-        {children}
-      </a>
-    );
-  }
   return (
-    <Link href={href} prefetch={false} {...rest}>
+    <a href={href} {...rest}>
       {children}
-    </Link>
+    </a>
   );
 }
