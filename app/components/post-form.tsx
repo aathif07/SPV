@@ -333,19 +333,10 @@ export default function PostForm({
 
             {storageConfigured ? null : (
               <p className="field-hint">
-                Image storage is not connected yet, so uploads will fail. Paste an
-                image URL below until the S3 settings are added.
+                Image storage is not connected yet. Configure the S3 settings before
+                uploading a cover image.
               </p>
             )}
-
-            <label className="field">
-              Image URL
-              <input
-                value={values.coverImageUrl}
-                onChange={(event) => set("coverImageUrl", event.target.value)}
-                placeholder="https://…"
-              />
-            </label>
 
             <label className="field">
               Image description (alt text)
