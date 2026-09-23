@@ -194,7 +194,8 @@ export default function PostForm({
                 Full content (English)
                 <RichTextEditor
                   ariaLabel="English post content"
-                  value={initial.contentEn}
+                  lang="en"
+                  value={values.contentEn}
                   onChange={(html) => set("contentEn", html)}
                   uploadImage={uploadImage}
                 />
@@ -228,7 +229,8 @@ export default function PostForm({
                 Full content (Tamil)
                 <RichTextEditor
                   ariaLabel="Tamil post content"
-                  value={initial.contentTa}
+                  lang="ta"
+                  value={values.contentTa}
                   onChange={(html) => set("contentTa", html)}
                   uploadImage={uploadImage}
                 />

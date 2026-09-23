@@ -44,11 +44,13 @@ export default function RichTextEditor({
   onChange,
   uploadImage,
   ariaLabel,
+  lang,
 }: {
   value: string;
   onChange: (html: string) => void;
   uploadImage?: UploadImage;
   ariaLabel: string;
+  lang?: string;
 }) {
   const fileInput = useRef<HTMLInputElement>(null);
 
@@ -64,7 +66,11 @@ export default function RichTextEditor({
     ],
     content: value,
     editorProps: {
-      attributes: { class: "editor-surface", "aria-label": ariaLabel },
+      attributes: {
+        class: "editor-surface",
+        "aria-label": ariaLabel,
+        ...(lang ? { lang } : {}),
+      },
     },
     onUpdate: ({ editor: instance }) => onChange(instance.getHTML()),
   });
