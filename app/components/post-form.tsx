@@ -197,7 +197,6 @@ export default function PostForm({
                   lang="en"
                   value={values.contentEn}
                   onChange={(html) => set("contentEn", html)}
-                  uploadImage={uploadImage}
                 />
               </div>
             </>
@@ -232,7 +231,6 @@ export default function PostForm({
                   lang="ta"
                   value={values.contentTa}
                   onChange={(html) => set("contentTa", html)}
-                  uploadImage={uploadImage}
                 />
               </div>
 
