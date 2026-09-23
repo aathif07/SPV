@@ -1,3 +1,5 @@
+import { toMediaUrl } from "../lib/media-url";
+
 /**
  * Cover images can live on S3, so they bypass the built-in image optimiser
  * (which only serves assets bundled with the site).
@@ -28,4 +30,3 @@ export default function PostImage({
     />
   );
 }
-import { toMediaUrl } from "../lib/media-url";
