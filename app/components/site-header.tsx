@@ -73,7 +73,7 @@ function NavLink({
     );
   }
   return (
-    <Link href={href} {...rest}>
+    <Link href={href} prefetch={false} {...rest}>
       {children}
     </Link>
   );
