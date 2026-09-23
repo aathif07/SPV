@@ -6,7 +6,6 @@ import { NameMark } from "../components/name-mark";
 import { Bilingual, LanguageProvider, LanguageToggle } from "../components/language";
 import { listPublishedPosts } from "../lib/posts";
 import { formatPostDate } from "../lib/format";
-import Link from "next/link";
 
 export const dynamic = "force-dynamic";
 
@@ -47,7 +46,7 @@ export default async function BlogIndexPage() {
                 const date = formatPostDate(post.publishedAt ?? post.createdAt);
                 return (
                   <article className="blog-card" key={post.id}>
-                    <Link className="blog-card-link" href={`/blog/${post.slug}`}>
+                    <a className="blog-card-link" href={`/blog/${post.slug}`}>
                       <div className="blog-card-media">
                         <PostImage
                           src={post.coverImageUrl}
@@ -71,7 +70,7 @@ export default async function BlogIndexPage() {
                           View Blog <b aria-hidden="true">→</b>
                         </span>
                       </div>
-                    </Link>
+                    </a>
                   </article>
                 );
               })}

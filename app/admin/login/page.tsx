@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { getCurrentAdmin } from "../../lib/auth";
 import { NameMark } from "../../components/name-mark";
-import Link from "next/link";
 
 export const dynamic = "force-dynamic";
 
@@ -31,9 +30,9 @@ export default async function AdminLoginPage({
   return (
     <main className="auth-screen">
       <div className="auth-card">
-        <Link className="auth-brand" href="/">
+        <a className="auth-brand" href="/">
           <NameMark />
-        </Link>
+        </a>
         <p className="section-label">Content Management</p>
         <h1 className="auth-title">Admin Sign In</h1>
 
@@ -64,7 +63,7 @@ export default async function AdminLoginPage({
         </form>
 
         <p className="auth-note">
-          Back to <Link href="/">the website</Link>
+          Back to <a href="/">the website</a>
         </p>
       </div>
     </main>

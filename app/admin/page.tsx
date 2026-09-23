@@ -4,7 +4,6 @@ import { listAllPosts } from "../lib/posts";
 import AdminShell from "../components/admin-shell";
 import DeletePostButton from "../components/delete-post-button";
 import { formatPostDate } from "../lib/format";
-import Link from "next/link";
 
 export const dynamic = "force-dynamic";
 
@@ -31,17 +30,17 @@ export default async function AdminPostsPage() {
             {drafts === 1 ? "" : "s"}
           </p>
         </div>
-        <Link className="button button-primary" href="/admin/posts/new">
+        <a className="button button-primary" href="/admin/posts/new">
           New Post <span>+</span>
-        </Link>
+        </a>
       </div>
 
       {posts.length === 0 ? (
         <div className="admin-empty">
           <p>No posts yet.</p>
-          <Link className="button button-primary" href="/admin/posts/new">
+          <a className="button button-primary" href="/admin/posts/new">
             Write the first post <span>→</span>
-          </Link>
+          </a>
         </div>
       ) : (
         <table className="admin-table">
@@ -61,9 +60,9 @@ export default async function AdminPostsPage() {
               return (
                 <tr key={post.id}>
                   <td>
-                    <Link className="admin-post-title" href={`/admin/posts/${post.id}`}>
+                    <a className="admin-post-title" href={`/admin/posts/${post.id}`}>
                       {post.titleEn}
-                    </Link>
+                    </a>
                     <span className="admin-slug">/blog/{post.slug}</span>
                   </td>
                   <td data-label="Status">
@@ -72,9 +71,9 @@ export default async function AdminPostsPage() {
                   <td data-label="Date">{date.en}</td>
                   <td data-label="Languages">{hasTamil ? "EN + தமிழ்" : "EN"}</td>
                   <td className="admin-actions" data-label="Actions">
-                    <Link className="admin-link" href={`/admin/posts/${post.id}`}>
+                    <a className="admin-link" href={`/admin/posts/${post.id}`}>
                       Edit
-                    </Link>
+                    </a>
                     {post.status === "published" ? (
                       <a
                         className="admin-link"

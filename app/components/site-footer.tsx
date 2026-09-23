@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { NameMark } from "./name-mark";
-import Link from "next/link";
 
 export default function SiteFooter() {
   return (
@@ -25,9 +24,9 @@ export default function SiteFooter() {
         <p className="signature">
           <NameMark />
         </p>
-        <Link className="button footer-button" href="/#connect">
+        <a className="button footer-button" href="/#connect">
           Connect With Us <span>↗</span>
-        </Link>
+        </a>
       </div>
       <div className="footer-bottom">
         <span>SPV</span>

@@ -11,7 +11,6 @@ import {
 } from "../../components/language";
 import { getPublishedPostBySlug, htmlToPlainText } from "../../lib/posts";
 import { formatPostDate } from "../../lib/format";
-import Link from "next/link";
 
 export const dynamic = "force-dynamic";
 
@@ -57,9 +56,9 @@ export default async function BlogPostPage({ params }: PageProps) {
       <LanguageProvider>
         <article className="post">
           <header className="post-header">
-            <Link className="post-back" href="/blog">
+            <a className="post-back" href="/blog">
               ← Back to Blog
-            </Link>
+            </a>
 
             <p className="post-meta">
               {post.category ? <span className="post-category">{post.category}</span> : null}
@@ -100,12 +99,12 @@ export default async function BlogPostPage({ params }: PageProps) {
           />
 
           <footer className="post-footer">
-            <Link className="button button-secondary" href="/blog">
+            <a className="button button-secondary" href="/blog">
               ← All Posts
-            </Link>
-            <Link className="button button-primary" href="/#connect">
+            </a>
+            <a className="button button-primary" href="/#connect">
               Connect With Us <span>↗</span>
-            </Link>
+            </a>
           </footer>
         </article>
       </LanguageProvider>
