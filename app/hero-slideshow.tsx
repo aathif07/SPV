@@ -5,40 +5,40 @@ import { useEffect, useRef, useState } from "react";
 
 const slides = [
   {
-    src: "/images/public-toi.png",
-    alt: "S. P. Velumani speaking at a press interaction",
-    label: "Voice of the people",
-    position: "center 42%",
-  },
-  {
-    src: "/images/public-news-minute.jpg",
-    alt: "S. P. Velumani addressing a public meeting",
-    label: "Public leadership",
-    position: "center 32%",
-  },
-  {
-    src: "/images/public-nie-2021.jpg",
-    alt: "S. P. Velumani speaking at an AIADMK event",
-    label: "Party programme",
-    position: "center 38%",
-  },
-  {
-    src: "/images/public-samayam.jpg",
-    alt: "S. P. Velumani greeting the public with folded hands",
+    src: "/images/spv-studio-namaste-close.jpg",
+    alt: "S. P. Velumani greeting with folded hands",
     label: "People first",
-    position: "center 34%",
+    position: "center 18%",
   },
   {
-    src: "/images/public-nie-2025.jpg",
-    alt: "S. P. Velumani at a public programme",
-    label: "Public service",
-    position: "center 36%",
+    src: "/images/spv-studio-victory-close.jpg",
+    alt: "S. P. Velumani raising a victory sign",
+    label: "Voice of the people",
+    position: "center 16%",
   },
   {
-    src: "/images/public-dtnext.jpg",
-    alt: "Portrait of S. P. Velumani",
+    src: "/images/spv-studio-namaste-scarf.jpg",
+    alt: "S. P. Velumani in the party scarf greeting with folded hands",
+    label: "Public leadership",
+    position: "center 20%",
+  },
+  {
+    src: "/images/spv-studio-seated-close.jpg",
+    alt: "S. P. Velumani seated portrait",
     label: "Experience",
-    position: "center 28%",
+    position: "center 24%",
+  },
+  {
+    src: "/images/spv-studio-wave.jpg",
+    alt: "S. P. Velumani waving to the public",
+    label: "Public service",
+    position: "center 14%",
+  },
+  {
+    src: "/images/spv-studio-namaste-full.jpg",
+    alt: "S. P. Velumani greeting in the party colours",
+    label: "Party programme",
+    position: "center 16%",
   },
 ];
 
@@ -126,7 +126,7 @@ export default function HeroSlideshow() {
         ))}
         <button type="button" className="slide-arrow" aria-label="Next photograph" onClick={() => setActive(current => (current + 1) % slides.length)}>→</button>
       </div>
-      <p className="hero-photo-credit">Public imagery · supplied media sources</p>
+      <p className="hero-photo-credit">Official photographs</p>
     </aside>
   );
 }
