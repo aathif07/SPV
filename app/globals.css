@@ -1280,3 +1280,16 @@ body,main{background:#fff}
 
 /* Studio portraits are tall, so gallery tiles keep the face in frame. */
 .gallery-grid figure:not(.gallery-cutout) img{object-position:center 18%!important}
+
+/* Thinner gallery frames; on small screens tiles size from their aspect ratio
+   so the tall portrait never overlaps the row beneath it. */
+.gallery-grid figure{border-width:2px}
+@media(max-width:900px){
+  .gallery-grid{grid-auto-rows:auto}
+  .gallery-grid figure{aspect-ratio:3/4}
+  .gallery-grid .gallery-tall{grid-column:1/-1;grid-row:auto;min-height:0;height:auto;aspect-ratio:4/5}
+}
+@media(max-width:620px){
+  .gallery-grid{gap:10px}
+  .gallery-grid figure{border-width:1.5px;border-radius:18px}
+}
