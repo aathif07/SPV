@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import { Geist, Noto_Sans_Tamil } from "next/font/google";
+import { Anton, Geist, Instrument_Serif, Inter, Noto_Sans_Tamil } from "next/font/google";
 import { headers } from "next/headers";
 import "./globals.css";
+import "./site.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -12,6 +13,18 @@ const geistSans = Geist({
 const notoTamil = Noto_Sans_Tamil({
   variable: "--font-tamil",
   subsets: ["tamil"],
+  weight: ["500", "700", "800"],
+  display: "swap",
+});
+
+// Homepage display, body and quote faces.
+const anton = Anton({ variable: "--font-anton", subsets: ["latin"], weight: "400", display: "swap" });
+const inter = Inter({ variable: "--font-inter", subsets: ["latin"], display: "swap" });
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-instrument",
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
   display: "swap",
 });
 
@@ -38,7 +51,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${notoTamil.variable} antialiased`}
+        className={`${geistSans.variable} ${notoTamil.variable} ${anton.variable} ${inter.variable} ${instrumentSerif.variable} antialiased`}
       >
         {children}
       </body>

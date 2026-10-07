@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import SiteHeader from "../../components/site-header";
-import SiteFooter from "../../components/site-footer";
 import PostImage from "../../components/post-image";
 import {
   Bilingual,
@@ -9,6 +7,7 @@ import {
   LanguageProvider,
   LanguageToggle,
 } from "../../components/language";
+import { Arrow, PlainLink, SiteBottom, SiteTop } from "../../components/site-chrome";
 import { getPublishedPostBySlug, htmlToPlainText } from "../../lib/posts";
 import { formatPostDate } from "../../lib/format";
 
@@ -50,66 +49,48 @@ export default async function BlogPostPage({ params }: PageProps) {
   const hasTamil = Boolean(post.titleTa?.trim() && post.contentTa?.trim());
 
   return (
-    <main id="top">
-      <SiteHeader />
+    <div className="sp" id="top">
+      <SiteTop />
 
       <LanguageProvider>
-        <article className="post">
-          <header className="post-header">
-            <a className="post-back" href="/blog">
-              ← Back to Blog
-            </a>
-
-            <p className="post-meta">
-              {post.category ? <span className="post-category">{post.category}</span> : null}
-              <span>
-                <Bilingual en={date.en} ta={date.ta} />
-              </span>
-            </p>
-
-            <h1 className="post-title">
-              <Bilingual en={post.titleEn} ta={post.titleTa} />
-            </h1>
-
-            {post.excerptEn ? (
-              <p className="post-standfirst">
-                <Bilingual en={post.excerptEn} ta={post.excerptTa} />
+        <main>
+          <article className="sp-post">
+            <header className="sp-post-head">
+              <PlainLink className="sp-post-back" href="/blog">← Back to blog</PlainLink>
+              <p className="sp-blog-meta">
+                {post.category ? <span className="sp-tag">{post.category}</span> : null}
+                <span><Bilingual en={date.en} ta={date.ta} /></span>
               </p>
+              <h1 className="sp-post-title">
+                <Bilingual en={post.titleEn} ta={post.titleTa} />
+              </h1>
+              {post.excerptEn ? (
+                <p className="sp-post-standfirst">
+                  <Bilingual en={post.excerptEn} ta={post.excerptTa} />
+                </p>
+              ) : null}
+              <LanguageToggle hasTamil={hasTamil} />
+            </header>
+
+            {post.coverImageUrl ? (
+              <figure className="sp-post-cover">
+                {/* The alt text describes the photo; no visible caption, so
+                    assistive tech does not announce it twice. */}
+                <PostImage src={post.coverImageUrl} alt={post.coverImageAlt ?? post.titleEn} priority />
+              </figure>
             ) : null}
 
-            <LanguageToggle hasTamil={hasTamil} />
-          </header>
+            <BilingualHtml className="sp-post-body" en={post.contentEn} ta={post.contentTa} />
 
-          {post.coverImageUrl ? (
-            <figure className="post-cover">
-              {/* The alt text describes the photo; no visible caption, so
-                  assistive tech does not announce it twice. */}
-              <PostImage
-                src={post.coverImageUrl}
-                alt={post.coverImageAlt ?? post.titleEn}
-                priority
-              />
-            </figure>
-          ) : null}
-
-          <BilingualHtml
-            className="post-body"
-            en={post.contentEn}
-            ta={post.contentTa}
-          />
-
-          <footer className="post-footer">
-            <a className="button button-secondary" href="/blog">
-              ← All Posts
-            </a>
-            <a className="button button-primary" href="/#connect">
-              Connect With Us <span>↗</span>
-            </a>
-          </footer>
-        </article>
+            <footer className="sp-post-foot">
+              <PlainLink className="sp-btn sp-btn-ghost" href="/blog">← All posts</PlainLink>
+              <PlainLink className="sp-btn sp-btn-red" href="/#connect">Connect with us <Arrow /></PlainLink>
+            </footer>
+          </article>
+        </main>
       </LanguageProvider>
 
-      <SiteFooter />
-    </main>
+      <SiteBottom />
+    </div>
   );
 }

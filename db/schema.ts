@@ -5,6 +5,8 @@ import {
   varchar,
   timestamp,
   index,
+  integer,
+  boolean,
 } from "drizzle-orm/pg-core";
 
 /** People who can sign in to /admin. */
@@ -70,6 +72,44 @@ export const posts = pgTable(
   ],
 );
 
+/**
+ * Achievements shown as cards on the homepage and on /achievements. Ordered
+ * by `sortOrder`; Tamil columns are optional, as with posts.
+ */
+export const achievements = pgTable(
+  "achievements",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    slug: varchar("slug", { length: 255 }).notNull().unique(),
+
+    titleEn: varchar("title_en", { length: 300 }).notNull(),
+    titleTa: varchar("title_ta", { length: 300 }),
+
+    // One or two sentences for the card.
+    summaryEn: text("summary_en").notNull().default(""),
+    summaryTa: text("summary_ta"),
+
+    // Full write-up for the detail page, stored as HTML.
+    contentEn: text("content_en").notNull().default(""),
+    contentTa: text("content_ta"),
+
+    imageUrl: text("image_url"),
+    imageAlt: varchar("image_alt", { length: 300 }),
+    // Key into the icon set in app/components/achievement-icon.tsx.
+    icon: varchar("icon", { length: 32 }).notNull().default("award"),
+    // Renders the card in solid red.
+    highlight: boolean("highlight").notNull().default(false),
+
+    sortOrder: integer("sort_order").notNull().default(0),
+    status: varchar("status", { length: 16 }).notNull().default("published"),
+
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [index("achievements_status_sort_idx").on(table.status, table.sortOrder)],
+);
+
 export type AdminUser = typeof adminUsers.$inferSelect;
 export type Post = typeof posts.$inferSelect;
 export type NewPost = typeof posts.$inferInsert;
+export type Achievement = typeof achievements.$inferSelect;

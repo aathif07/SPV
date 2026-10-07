@@ -6,14 +6,23 @@ import { useState, useTransition } from "react";
  * Two-step delete. Deliberately not window.confirm — an inline confirmation
  * keeps the interaction inside the page.
  */
-export default function DeletePostButton({ id, title }: { id: string; title: string }) {
+export default function DeletePostButton({
+  id,
+  title,
+  endpoint = "/api/admin/posts",
+}: {
+  id: string;
+  title: string;
+  /** Collection URL; the id is appended. */
+  endpoint?: string;
+}) {
   const [armed, setArmed] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [pending, startTransition] = useTransition();
 
   async function remove() {
     setError(null);
-    const response = await fetch(`/api/admin/posts/${id}`, { method: "DELETE" });
+    const response = await fetch(`${endpoint}/${id}`, { method: "DELETE" });
     if (!response.ok) {
       setError("Could not delete. Please try again.");
       setArmed(false);

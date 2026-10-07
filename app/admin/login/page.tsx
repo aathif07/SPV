@@ -1,7 +1,8 @@
+import Image from "next/image";
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { getCurrentAdmin } from "../../lib/auth";
-import { NameMark } from "../../components/name-mark";
+import { PlainLink } from "../../components/site-chrome";
 
 export const dynamic = "force-dynamic";
 
@@ -30,11 +31,14 @@ export default async function AdminLoginPage({
   return (
     <main className="auth-screen">
       <div className="auth-card">
-        <a className="auth-brand" href="/">
-          <NameMark />
-        </a>
-        <p className="section-label">Content Management</p>
-        <h1 className="auth-title">Admin Sign In</h1>
+        <div className="sp-tricolor" />
+        <PlainLink className="auth-brand sp-logo" href="/">
+          <span className="sp-mark"><Image src="/images/spv-avatar.jpg" alt="" width={84} height={84} priority /></span>
+          <span><b>S. P. VELUMANI</b><small lang="ta">எஸ். பி. வேலுமணி</small></span>
+        </PlainLink>
+        <p className="section-label">Content management</p>
+        <h1 className="auth-title">Admin sign in</h1>
+        <p className="auth-sub">Sign in to write and publish posts on the blog.</p>
 
         {message ? (
           <p className="auth-error" role="alert">
@@ -63,7 +67,7 @@ export default async function AdminLoginPage({
         </form>
 
         <p className="auth-note">
-          Back to <a href="/">the website</a>
+          <PlainLink href="/">← Back to the website</PlainLink>
         </p>
       </div>
     </main>

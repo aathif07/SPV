@@ -4,6 +4,7 @@ import { listAllPosts } from "../lib/posts";
 import AdminShell from "../components/admin-shell";
 import DeletePostButton from "../components/delete-post-button";
 import { formatPostDate } from "../lib/format";
+import { PlainLink } from "../components/site-chrome";
 
 export const dynamic = "force-dynamic";
 
@@ -30,17 +31,17 @@ export default async function AdminPostsPage() {
             {drafts === 1 ? "" : "s"}
           </p>
         </div>
-        <a className="button button-primary" href="/admin/posts/new">
+        <PlainLink className="button button-primary" href="/admin/posts/new">
           New Post <span>+</span>
-        </a>
+        </PlainLink>
       </div>
 
       {posts.length === 0 ? (
         <div className="admin-empty">
           <p>No posts yet.</p>
-          <a className="button button-primary" href="/admin/posts/new">
+          <PlainLink className="button button-primary" href="/admin/posts/new">
             Write the first post <span>→</span>
-          </a>
+          </PlainLink>
         </div>
       ) : (
         <table className="admin-table">
