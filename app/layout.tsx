@@ -37,7 +37,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const description = "Official leadership portfolio of S. P. Velumani — public service, experience and a vision for Tamil Nadu.";
   return {
     title, description,
-    icons: { icon: "/favicon.svg", shortcut: "/favicon.svg" },
+    icons: { icon: "/favicon.png", shortcut: "/favicon.png", apple: "/apple-touch-icon.png" },
     openGraph: { title, description, images: [{ url: image, width: 1200, height: 630, alt: "S. P. Velumani — Leadership. Experience. Service." }] },
     twitter: { card: "summary_large_image", title, description, images: [image] },
   };
