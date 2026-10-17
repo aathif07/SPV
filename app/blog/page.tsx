@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 export default async function BlogIndexPage() {
-  const posts = await listPublishedPosts(60);
+  const posts = await listPublishedPosts(120);
   const anyTamil = posts.some((post) => post.titleTa?.trim());
   const [featured, ...rest] = posts;
 

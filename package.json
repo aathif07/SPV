@@ -13,7 +13,8 @@
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "node --env-file-if-exists=.env scripts/migrate.mjs",
-    "admin:create": "node --env-file-if-exists=.env scripts/create-admin.mjs"
+    "admin:create": "node --env-file-if-exists=.env scripts/create-admin.mjs",
+    "blogs:import": "node --env-file-if-exists=.env scripts/import-blogs.mjs"
   },
   "dependencies": {
     "@tiptap/extension-image": "^3.31.3",
